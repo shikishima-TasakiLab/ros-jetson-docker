@@ -25,12 +25,12 @@ git clone https://github.com/shikishima-TasakiLab/ros-jetson-docker.git ROS-Jets
     #!/bin/bash
     ./ROS-Jetson/docker/run-docker.sh
     ```
-    |オプション   |パラメータ|説明                                      |既定値    |例                                         |
-    |-------------|----------|------------------------------------------|----------|-------------------------------------------|
-    |-h, --help   |なし      |このヘルプを表示                          |なし      |-h                                         |
-    |-n, --name   |NAME      |コンテナの名前を指定                      |ros-master|-n ros-talker                              |
-    |-e, --env    |ENV=VALUE |コンテナの環境変数を指定する（複数指定可）|なし      |-e ROS_MASTER_URI=http://192.168.2.10:11311|
-    |-c, --command|CMD       |コンテナ起動時に実行するコマンドを指定    |なし      |-c roscore , -c "rosrun rviz rviz"         |
+    |オプション       |パラメータ|説明                                      |既定値    |例                                           |
+    |-----------------|----------|------------------------------------------|----------|---------------------------------------------|
+    |`-h`, `--help`   |なし      |このヘルプを表示                          |なし      |`-h`                                         |
+    |`-n`, `--name`   |NAME      |コンテナの名前を指定                      |ros-master|`-n ros-talker`                              |
+    |`-e`, `--env`    |ENV=VALUE |コンテナの環境変数を指定する（複数指定可）|なし      |`-e ROS_MASTER_URI=http://192.168.2.10:11311`|
+    |`-c`, `--command`|CMD       |コンテナ起動時に実行するコマンドを指定    |なし      |`-c roscore` , `-c "rosrun rviz rviz"`       |
 
 2. ROS-BridgeのDockerコンテナで複数のROSパッケージを使用する際は，次のコマンドを別のターミナルで実行する．
 
@@ -38,11 +38,11 @@ git clone https://github.com/shikishima-TasakiLab/ros-jetson-docker.git ROS-Jets
     #!/bin/bash
     ./ROS-Jetson/docker/exec-docker.sh
     ```
-    |オプション|パラメータ|説明                |既定値    |例             |
-    |----------|----------|--------------------|----------|---------------|
-    |-h, --help|なし      |このヘルプを表示    |なし      |-h             |
-    |-i, --id  |ID        |コンテナのIDを指定  |ros-master|-i 4f8eb7aeded7|
-    |-n, --name|NAME      |コンテナの名前を指定|ros-master|-n ros-talker  |
+    |オプション    |パラメータ|説明                |既定値|例               |
+    |--------------|----------|--------------------|------|-----------------|
+    |`-h`, `--help`|なし      |このヘルプを表示    |なし  |`-h`             |
+    |`-i`, `--id`  |ID        |コンテナのIDを指定  |なし  |`-i 4f8eb7aeded7`|
+    |`-n`, `--name`|NAME      |コンテナの名前を指定|なし  |`-n ros-talker`  |
 
 ### ROSパッケージの作成・ビルド・実行
 
