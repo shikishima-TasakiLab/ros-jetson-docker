@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/l4t-base:r32.3.1
+FROM nvcr.io/nvidia/deepstream-l4t:4.0.2-19.12-base
 
 MAINTAINER "Shikishima-TasakiLab"
 
@@ -35,6 +35,9 @@ RUN apt-get update && \
         dirmngr \
         gpg-agent \
         mesa-utils \
+        libcanberra-gtk-module \
+        libcanberra-gtk3-0 \
+        libcanberra-gtk3-module \
         libglu1-mesa-dev \
         libgles2-mesa-dev \
         freeglut3-dev && \
@@ -63,7 +66,8 @@ ENV ROSDISTRO ${ROS_DISTRO}
 RUN source /opt/ros/${ROSDISTRO}/setup.bash && \
     rosdep update && \
     echo "source /opt/ros/${ROSDISTRO}/setup.bash" >> /home/${USER_NAME}/.bashrc && \
-    echo "export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH" >> /home/${USER_NAME}/.bashrc
+    echo "export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH" >> /home/${USER_NAME}/.bashrc && \
+    mkdir /home/ros/catkin_ws
 
 WORKDIR /home/ros/catkin_ws
 
