@@ -1,6 +1,6 @@
-FROM nvcr.io/nvidia/deepstream-l4t:4.0.2-19.12-base
+FROM nvcr.io/nvidia/l4t-base:r32.3.1
 
-MAINTAINER "Shikishima-TasakiLab"
+LABEL maintainer="Shikishima-TasakiLab"
 
 ARG ROS_DISTRO="melodic"
 ARG HOST_USER="1000"
