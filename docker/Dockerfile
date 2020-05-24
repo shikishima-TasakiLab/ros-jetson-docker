@@ -30,17 +30,48 @@ RUN apt-get update && \
         bash-completion \
         command-not-found \
         software-properties-common \
+        cmake-curses-gui \
+        cmake-qt-gui \
+        dbus-x11 \
+        dmz-cursor-theme \
+        fonts-dejavu \
+        gconf2 \
+        gnome-terminal \
+        gosu \
+        language-pack-en \
         xdg-user-dirs \
         xsel \
         dirmngr \
         gpg-agent \
         mesa-utils \
+        libarmadillo-dev \
         libcanberra-gtk-module \
         libcanberra-gtk3-0 \
         libcanberra-gtk3-module \
         libglu1-mesa-dev \
         libgles2-mesa-dev \
-        freeglut3-dev && \
+        freeglut3-dev \
+        libdbus-glib-1-2 \
+        libgflags-dev \
+        libglew-dev \
+        libgoogle-glog-dev \
+        libgoogle-perftools-dev \
+        libgsl0-dev \
+        libmosquitto-dev \
+        libopencv-dev \
+        libopenni2-dev \
+        libpcap-dev \
+        libssh2-1-dev \
+        locales \
+        pulseaudio \
+        python-flask \
+        python-requests \
+        python3-pip \
+        python3-setuptools \
+        tmux \
+        v4l-utils \
+        nano \
+        wget && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -53,11 +84,23 @@ RUN echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc
         python-rosinstall \
         python-rosinstall-generator \
         python-wstool \
+        python3-vcstool \
+        python3-colcon-common-extensions \
         build-essential && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-RUN source /opt/ros/${ROS_DISTRO}/setup.bash && \
-    rosdep init
+
+RUN update-locale LANG=en_US.UTF-8 LC_MESSAGES=POSIX
+
+ENV LANG="en_US.UTF-8"
+RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /etc/profile.d/ros.sh && \
+    echo "export QT_X11_NO_MITSHM=1" >> /etc/profile.d/ros.sh && \
+    echo "export LANG=\"en_US.UTF-8\"" >> /etc/profile.d/ros.sh
+
+RUN rosdep init
+
+COPY ./entrypoint.sh /tmp
+RUN chmod +x /tmp/entrypoint.sh
 
 USER ${USER_NAME}
 WORKDIR /home/${USER_NAME}
@@ -71,5 +114,4 @@ RUN source /opt/ros/${ROSDISTRO}/setup.bash && \
 
 WORKDIR /home/ros/catkin_ws
 
-COPY ./entrypoint.sh /tmp
 ENTRYPOINT ["/tmp/entrypoint.sh"]

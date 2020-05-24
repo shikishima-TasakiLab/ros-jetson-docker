@@ -9,6 +9,10 @@ if [ -v USER_ID ] && [ "$USER_ID" != "$DEFAULT_USER_ID" ]; then
     find /home/ros -user $DEFAULT_USER_ID -exec chown -h $USER_ID {} \;
 fi
 
+echo ""
+echo "ROS melodic"
+echo ""
+
 cd /home/ros
 source /opt/ros/melodic/setup.bash
 
