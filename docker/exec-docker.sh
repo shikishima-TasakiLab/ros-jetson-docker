@@ -2,6 +2,10 @@
 CONTAINER_ID=""
 CONTAINER_NAME=""
 
+ntr_arr=( $(echo $(cat /etc/nv_tegra_release) | tr -s ',' ' ') )
+MAJOR_VERSION=${ntr_arr[1]}
+MINOR_VERSION=${ntr_arr[4]}
+
 PROG_NAME=$(basename $0)
 
 function usage_exit {
@@ -42,7 +46,7 @@ done
 if [[ -n ${CONTAINER_ID} ]]; then
     CONTAINER_ID=$(docker ps | grep ${CONTAINER_ID})
 else
-    CONTAINER_ID=$(docker ps | grep "jetson/ros:melodic-desktop-full")
+    CONTAINER_ID=$(docker ps | grep "jetson/ros:${MAJOR_VERSION,,}.${MINOR_VERSION}-melodic")
 
     if [[ -n ${CONTAINER_NAME} ]]; then
         CONTAINER_ID=$(echo "${CONTAINER_ID}" | grep ${CONTAINER_NAME})

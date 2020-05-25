@@ -1,6 +1,10 @@
 #!/bin/bash
+ntr_arr=( $(echo $(cat /etc/nv_tegra_release) | tr -s ',' ' ') )
+MAJOR_VERSION=${ntr_arr[1]}
+MINOR_VERSION=${ntr_arr[4]}
+
 CONTAINER_NAME="ros-master"
-DOCKER_IMAGE="jetson/ros:melodic-desktop-full"
+DOCKER_IMAGE="jetson/ros:${MAJOR_VERSION,,}.${MINOR_VERSION}-melodic"
 CONTAINER_CMD=""
 DOCKER_ENV=""
 

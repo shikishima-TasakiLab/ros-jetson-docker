@@ -6,7 +6,7 @@ MAJOR_VERSION=${ntr_arr[1]}
 MINOR_VERSION=${ntr_arr[4]}
 
 docker build \
-    -t jetson/ros:melodic-desktop-full \
+    -t "jetson/ros:${MAJOR_VERSION,,}.${MINOR_VERSION}-melodic" \
     --build-arg L4T_VERSION="${MAJOR_VERSION,,}.${MINOR_VERSION}" \
     ${BUILD_DIR}/src
 
