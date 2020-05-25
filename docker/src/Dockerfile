@@ -1,4 +1,5 @@
-FROM nvcr.io/nvidia/l4t-base:r32.3.1
+ARG L4T_VERSION="r32.3.1"
+FROM nvcr.io/nvidia/l4t-base:${L4T_VERSION}
 
 LABEL maintainer="Shikishima-TasakiLab"
 
