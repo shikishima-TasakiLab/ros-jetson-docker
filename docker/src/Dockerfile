@@ -110,6 +110,9 @@ ENV ROSDISTRO ${ROS_DISTRO}
 RUN source /opt/ros/${ROSDISTRO}/setup.bash && \
     rosdep update && \
     echo "source /opt/ros/${ROSDISTRO}/setup.bash" >> /home/${USER_NAME}/.bashrc && \
+    echo "if [[ -f /home/${USER_NAME}/catkin_ws/devel/setup.bash ]]; then" >> /home/${USER_NAME}/.bashrc && \
+    echo "    source /home/${USER_NAME}/catkin_ws/devel/setup.bash" >> /home/${USER_NAME}/.bashrc && \
+    echo "fi" >> /home/${USER_NAME}/.bashrc && \
     echo "export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH" >> /home/${USER_NAME}/.bashrc && \
     mkdir /home/ros/catkin_ws
 
