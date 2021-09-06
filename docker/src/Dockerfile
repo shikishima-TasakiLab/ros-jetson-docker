@@ -13,6 +13,7 @@ RUN useradd -m $USER_NAME && \
     echo "$USER_NAME:$USER_NAME" | chpasswd && \
     usermod --shell /bin/bash $USER_NAME && \
     usermod -aG sudo $USER_NAME && \
+    mkdir -p /etc/sudoers.d && \
     echo "$USER_NAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$USER_NAME && \
     chmod 0440 /etc/sudoers.d/$USER_NAME && \
     usermod  --uid $HOST_USER $USER_NAME && \
