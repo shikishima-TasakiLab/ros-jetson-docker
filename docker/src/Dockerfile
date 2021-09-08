@@ -9,6 +9,12 @@ ARG USER_NAME="ros"
 
 SHELL ["/bin/bash", "-c"]
 
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        sudo && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 RUN useradd -m $USER_NAME && \
     echo "$USER_NAME:$USER_NAME" | chpasswd && \
     usermod --shell /bin/bash $USER_NAME && \
@@ -22,7 +28,6 @@ RUN useradd -m $USER_NAME && \
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        sudo \
         build-essential \
         git \
         less \
